@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dead/home_page.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _DetailsPageState extends State<DetailsPage> {
   double defaultSize = 20;
 
   List<String> actions = [
-    'الرئيسيه',
+    'السابقه',
     'خروج',
   ];
 
@@ -33,7 +34,11 @@ class _DetailsPageState extends State<DetailsPage> {
           IconButton(
             icon: Icon(Icons.home),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => HomePage(),
+                ),
+              );
             },
           ),
           IconButton(
@@ -55,10 +60,10 @@ class _DetailsPageState extends State<DetailsPage> {
           PopupMenuButton<String>(
             onSelected: selectAction,
             itemBuilder: (context) {
-              return actions.map((currntAction) {
+              return actions.map((currentAction) {
                 return PopupMenuItem<String>(
-                  value: currntAction,
-                  child: Text(currntAction),
+                  value: currentAction,
+                  child: Text(currentAction),
                 );
               }).toList();
             },
@@ -80,6 +85,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   style: TextStyle(
                     color: Color(0xff756D04),
                     fontSize: defaultSize,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
